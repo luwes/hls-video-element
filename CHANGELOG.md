@@ -1,3 +1,7 @@
+## [0.1.1](https://github.com/luwes/hls-video-element/compare/v0.1.0...v0.1.1) (2022-07-23)
+
+
+
 # [0.1.0](https://github.com/luwes/hls-video-element/compare/v0.0.3...v0.1.0) (2022-07-23)
 
 

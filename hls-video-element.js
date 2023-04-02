@@ -1,5 +1,5 @@
 import { SuperVideoElement } from 'super-media-element';
-import Hls from 'hls.js/dist/hls.min.mjs';
+import Hls from 'hls.js/dist/hls.mjs';
 
 class HlsVideoElement extends SuperVideoElement {
 

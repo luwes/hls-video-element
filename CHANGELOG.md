@@ -1,3 +1,12 @@
+## [0.2.1](https://github.com/luwes/hls-video-element/compare/v0.2.0...v0.2.1) (2023-04-02)
+
+
+### Bug Fixes
+
+* import issue ([38897a4](https://github.com/luwes/hls-video-element/commit/38897a4bbe55f317072303e23796aa2c0d604127))
+
+
+
 # [0.2.0](https://github.com/luwes/hls-video-element/compare/v0.0.3...v0.2.0) (2023-04-02)
 
 

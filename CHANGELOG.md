@@ -1,3 +1,12 @@
+# [1.0.0](https://github.com/luwes/hls-video-element/compare/v0.2.1...v1.0.0) (2023-04-09)
+
+
+### Bug Fixes
+
+* update super-media-element v1.2.0 ([714c183](https://github.com/luwes/hls-video-element/commit/714c1836041248701700525edc09eccbf414310e))
+
+
+
 ## [0.2.1](https://github.com/luwes/hls-video-element/compare/v0.2.0...v0.2.1) (2023-04-02)
 
 

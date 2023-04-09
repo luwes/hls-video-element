@@ -3,20 +3,11 @@ import Hls from 'hls.js/dist/hls.mjs';
 
 class HlsVideoElement extends SuperVideoElement {
 
-  async attributeChangedCallback(attrName, oldValue, newValue) {
-    switch (attrName) {
-      case 'src': {
-        this.load();
-        return;
-      }
-    }
+  // Prevent forwarding src to native video element.
+  static skipAttributes = ['src'];
 
-    super.attributeChangedCallback(attrName, oldValue, newValue);
-  }
-
-  disconnectedCallback() {
-    this.#destroy();
-  }
+  // No load promise needed because hls.js is sync.
+  loadComplete = null;
 
   #destroy() {
     if (this.api) {
@@ -26,20 +17,8 @@ class HlsVideoElement extends SuperVideoElement {
     }
   }
 
-  get src() {
-    return this.getAttribute('src');
-  }
-
-  set src(val) {
-    if (val == this.src) return;
-    this.setAttribute('src', val);
-  }
-
   async load() {
     this.#destroy();
-
-    // Wait 1 tick to allow other attributes to be set.
-    await Promise.resolve();
 
     if (!this.src) {
       return;
@@ -90,7 +69,9 @@ class HlsVideoElement extends SuperVideoElement {
       }
 
       this.api.attachMedia(this.nativeEl);
+
     } else if (this.nativeEl.canPlayType('application/vnd.apple.mpegurl')) {
+
       this.nativeEl.src = this.src;
     }
   }

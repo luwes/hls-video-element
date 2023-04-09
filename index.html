@@ -19,8 +19,8 @@
 <script type="importmap">
   {
     "imports": {
-      "super-media-element": "https://cdn.jsdelivr.net/npm/super-media-element",
-      "hls.js/": "https://cdn.jsdelivr.net/npm/hls.js@1.4.0-beta.2/"
+      "super-media-element": "https://cdn.jsdelivr.net/npm/super-media-element@1.2",
+      "hls.js/": "https://cdn.jsdelivr.net/npm/hls.js@1.4.0-rc.1/"
     }
   }
 </script>
@@ -49,7 +49,19 @@
     video.src = 'https://stream.mux.com/1EFcsL5JET00t00mBv01t00xt00T4QeNQtsXx2cKY6DLd7RM.m3u8';
   }
 
+  video.addEventListener('emptied', (e) => {
+    console.log(e.type);
+  });
+
   video.addEventListener('loadstart', (e) => {
+    console.log(e.type);
+  });
+
+  video.addEventListener('loadedmetadata', (e) => {
+    console.log(e.type);
+  });
+
+  video.addEventListener('loadeddata', (e) => {
     console.log(e.type);
   });
 

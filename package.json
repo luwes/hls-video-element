@@ -18,11 +18,11 @@
     "dev": "wet serve"
   },
   "dependencies": {
-    "super-media-element": "0.4.2",
-    "hls.js": "1.4.0-beta.2"
+    "super-media-element": "1.2.0",
+    "hls.js": "1.4.0-rc.1"
   },
   "devDependencies": {
-    "wet-run": "^0.0.6"
+    "wet-run": "^0.0.8"
   },
   "eslintConfig": {
     "root": true,

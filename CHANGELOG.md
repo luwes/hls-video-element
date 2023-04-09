@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/luwes/hls-video-element/compare/v1.0.1...v1.0.2) (2023-04-09)
+
+
+### Bug Fixes
+
+* auto update patches ([51f6c0c](https://github.com/luwes/hls-video-element/commit/51f6c0c019e06338b6e1da856e22507b53cde02b))
+
+
+
 ## [1.0.1](https://github.com/luwes/hls-video-element/compare/v1.0.0...v1.0.1) (2023-04-09)
 
 

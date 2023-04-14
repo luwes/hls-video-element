@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/luwes/hls-video-element/compare/v1.0.2...v1.0.3) (2023-04-14)
+
+
+### Bug Fixes
+
+* upgrade hls.js ([7e6853a](https://github.com/luwes/hls-video-element/commit/7e6853af35d587e07716621a2c9cfc9f3f14470b))
+
+
+
 ## [1.0.2](https://github.com/luwes/hls-video-element/compare/v1.0.1...v1.0.2) (2023-04-09)
 
 

@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "super-media-element": "~1.2.1",
-    "hls.js": "1.4.0-rc.1"
+    "hls.js": "^1.4.0"
   },
   "devDependencies": {
     "wet-run": "^0.0.8"

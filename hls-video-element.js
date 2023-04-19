@@ -77,7 +77,7 @@ class HlsVideoElement extends SuperVideoElement {
   }
 }
 
-if (!globalThis.customElements.get('hls-video')) {
+if (globalThis.customElements && !globalThis.customElements.get('hls-video')) {
   globalThis.customElements.define('hls-video', HlsVideoElement);
 }
 

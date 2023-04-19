@@ -1,3 +1,12 @@
+## [1.0.4](https://github.com/luwes/hls-video-element/compare/v1.0.3...v1.0.4) (2023-04-19)
+
+
+### Bug Fixes
+
+* Next.js SSR document type error ([576caa6](https://github.com/luwes/hls-video-element/commit/576caa6e93eb1d86a1c348044f09283bdf87e724))
+
+
+
 ## [1.0.3](https://github.com/luwes/hls-video-element/compare/v1.0.2...v1.0.3) (2023-04-14)
 
 

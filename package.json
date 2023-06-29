@@ -13,34 +13,16 @@
     "url": "https://github.com/luwes/hls-video-element/issues"
   },
   "scripts": {
-    "lint": "npx eslint *.js",
+    "lint": "npx eslint *.js -c ./node_modules/wet-run/.eslintrc.json",
     "test": "wet run",
     "dev": "wet serve"
   },
   "dependencies": {
-    "super-media-element": "~1.2.4",
-    "hls.js": "^1.4.0"
+    "super-media-element": "~1.3.0",
+    "hls.js": "^1.4.7"
   },
   "devDependencies": {
-    "wet-run": "^0.0.8"
-  },
-  "eslintConfig": {
-    "root": true,
-    "globals": {
-      "globalThis": "writable"
-    },
-    "env": {
-      "browser": true,
-      "es6": true,
-      "mocha": true
-    },
-    "extends": [
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "ecmaVersion": 2022,
-      "sourceType": "module"
-    }
+    "wet-run": "^0.2.0"
   },
   "keywords": [
     "HLS",

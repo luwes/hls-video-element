@@ -1,3 +1,17 @@
+# [1.1.0](https://github.com/luwes/hls-video-element/compare/v1.0.4...v1.1.0) (2023-06-30)
+
+
+### Bug Fixes
+
+* upgrade dependencies ([7988762](https://github.com/luwes/hls-video-element/commit/79887620fca4046a976eeb2093c9ee8491d82c23))
+
+
+### Features
+
+* add renditions API ([f94b8f5](https://github.com/luwes/hls-video-element/commit/f94b8f5977ce1b657e7143b8bdb6312a94969220))
+
+
+
 ## [1.0.4](https://github.com/luwes/hls-video-element/compare/v1.0.3...v1.0.4) (2023-04-19)
 
 

@@ -24,7 +24,7 @@
   {
     "imports": {
       "super-media-element": "https://cdn.jsdelivr.net/npm/super-media-element@1.3",
-      "media-tracks": "https://cdn.jsdelivr.net/npm/media-tracks@0.1/+esm",
+      "media-tracks": "https://cdn.jsdelivr.net/npm/media-tracks@0.2/+esm",
       "hls.js/": "https://cdn.jsdelivr.net/npm/hls.js@1.4/"
     }
   }
@@ -47,7 +47,10 @@
 <br>
 
 <nav>
-  <button id="loadbtn">Load new clip</button>
+  <nav>
+    <button id="loadbtn">Load new clip</button>
+    <button id="removebtn">Remove first rendition</button>
+  </nav>
   <nav>
     <select id="qualityselect">
       <option value="auto">Auto</option>
@@ -58,47 +61,41 @@
 
 <script type="module">
 
-  myVideo.videoTracks.addEventListener('addtrack', ({ track }) => {
-
+  myVideo.videoTracks.addEventListener('removetrack', ({ track }) => {
     let i = qualityselect.options.length;
     while (--i) qualityselect.options.remove(i);
-
-    track.renditions.addEventListener('addrendition', ({ rendition }) => {
-      qualityselect.append(new Option(
-        `${rendition.height}p`,
-        rendition.id,
-      ));
-    });
-
-    track.renditions.addEventListener('renditionchange', () => {
-      for (let rendition of myVideo.videoTracks[0].renditions) {
-        if (rendition.active) {
-          qualityselected.value = `${rendition.height}p`;
-        }
-      }
-    });
   });
 
+  myVideo.videoRenditions.addEventListener('addrendition', ({ rendition }) => {
+    qualityselect.append(new Option(
+      `${Math.min(rendition.width, rendition.height)}p`,
+      rendition.id,
+    ));
+  });
+
+  myVideo.videoRenditions.addEventListener('removerendition', ({ rendition }) => {
+    qualityselect.querySelector(`[value="${rendition.id}"]`).remove();
+  });
+
+  myVideo.addEventListener('resize', () => {
+    qualityselected.value = `${Math.min(myVideo.videoWidth, myVideo.videoHeight)}p`;
+  });
+
+  loadbtn.onclick = () => {
+    myVideo.src = 'https://stream.mux.com/1EFcsL5JET00t00mBv01t00xt00T4QeNQtsXx2cKY6DLd7RM.m3u8';
+  };
+
+  removebtn.onclick = () => {
+    myVideo.api.removeLevel(0);
+  };
+
   qualityselect.addEventListener('change', () => {
-    if (qualityselect.value == 'auto') {
-      for (let rendition of myVideo.videoTracks[0].renditions) {
-        rendition.enabled = true;
-      }
-    } else {
-      // Select 1 video rendition
-      for (let rendition of myVideo.videoTracks[0].renditions) {
-        rendition.enabled = qualityselect.value == rendition.id;
-      }
-    }
+    myVideo.videoRenditions.selectedIndex = qualityselect.selectedIndex - 1;
   });
 </script>
 
 <script>
   const video = document.querySelector('hls-video');
-
-  loadbtn.onclick = () => {
-    video.src = 'https://stream.mux.com/1EFcsL5JET00t00mBv01t00xt00T4QeNQtsXx2cKY6DLd7RM.m3u8';
-  }
 
   video.addEventListener('emptied', (e) => {
     console.log(e.type);

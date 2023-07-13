@@ -98,14 +98,7 @@ class HlsVideoElement extends MediaTracksMixin(SuperVideoElement) {
 
           // The returned levels all have an id of `0`, save the id in a WeakMap.
           levelIdMap.set(level, `${id}`);
-
           videoRendition.id = `${id}`;
-          videoRendition.enabled = this.api.autoLevelEnabled;
-
-          if (id == data.firstLevel) {
-            videoRendition.enabled = true;
-            videoRendition.active = true;
-          }
         }
       });
 
@@ -116,31 +109,12 @@ class HlsVideoElement extends MediaTracksMixin(SuperVideoElement) {
 
         const levelIds = data.levels.map((l) => levelIdMap.get(l));
 
-        for (const rendition of videoTrack.renditions) {
+        for (const rendition of this.videoRenditions) {
           if (rendition.id && !levelIds.includes(rendition.id)) {
-            videoTrack.renditions.remove(rendition);
+            videoTrack.removeRendition(rendition);
           }
         }
       });
-
-      this.api.on(Hls.Events.LEVEL_SWITCHED, (event, data) => {
-        const videoTrack = this.videoTracks[this.videoTracks.selectedIndex ?? 0];
-        if (!videoTrack) return;
-
-        // data.level returns an index of the level, not an id.
-        const levelId = levelIdMap.get(this.api.levels[data.level]);
-        const rendition = videoTrack?.renditions.getRenditionById(levelId);
-        if (rendition) {
-          rendition.active = true;
-        }
-      });
-
-      const onVideoTrack = () => {
-        const videoTrack = this.videoTracks[this.videoTracks.selectedIndex ?? 0];
-        if (!videoTrack) return;
-
-        videoTrack.renditions.addEventListener('change', switchRendition);
-      };
 
       // hls.js doesn't support enabling multiple renditions.
       //
@@ -148,32 +122,21 @@ class HlsVideoElement extends MediaTracksMixin(SuperVideoElement) {
       // 2. if 1 of the renditions is disabled we assume a selection was made
       //    and lock it to the first rendition that is enabled.
       const switchRendition = ({ target: renditions }) => {
-        let level;
-        if ([...renditions].some((rendition) => !rendition.enabled)) {
-          level = [...renditions].findIndex((r) => r.enabled) ?? -1;
-        } else {
-          level = -1;
-        }
-
+        const level = renditions.selectedIndex;
         if (level != this.api.nextLevel) {
-          this.api.nextLevel = Number(level);
+          this.api.nextLevel = level;
         }
       };
 
-      this.videoTracks.addEventListener('addtrack', onVideoTrack);
-      this.videoTracks.addEventListener('change', onVideoTrack);
+      this.videoRenditions.addEventListener('change', switchRendition);
 
       const removeAllVideoTracks = () => {
         for (const videoTrack of this.videoTracks) {
-          this.videoTracks.remove(videoTrack);
+          this.removeVideoTrack(videoTrack);
         }
       };
 
       this.api.once(Hls.Events.DESTROYING, () => {
-
-        this.videoTracks.removeEventListener('addtrack', onVideoTrack);
-        this.videoTracks.removeEventListener('change', onVideoTrack);
-
         removeAllVideoTracks();
       });
 

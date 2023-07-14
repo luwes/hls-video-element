@@ -1,3 +1,12 @@
+## [1.2.1](https://github.com/luwes/hls-video-element/compare/v1.2.0...v1.2.1) (2023-07-14)
+
+
+### Bug Fixes
+
+* upgrade media-tracks 0.2.1 ([b078d13](https://github.com/luwes/hls-video-element/commit/b078d1351fe942d9268834db7b05dababf6bbdad))
+
+
+
 # [1.2.0](https://github.com/luwes/hls-video-element/compare/v1.1.0...v1.2.0) (2023-07-13)
 
 
